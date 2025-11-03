@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-enum MoveDirection
+public enum MoveDirection
 {
     Left,
     Right
@@ -35,7 +35,8 @@ public class PlatformMover : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 target = _movingToTarget ? _targetPosition : _startPosition;
-        Vector2 newPosition = Vector2.MoveTowards(_rigidbody.position, target, _moveSpeed * Time.fixedDeltaTime);
+        Vector2 newPosition = Vector2.MoveTowards(_rigidbody.position, target,
+            _moveSpeed * Time.fixedDeltaTime);
         _rigidbody.MovePosition(newPosition);
 
         if (Vector2.Distance(_rigidbody.position, target) < 0.01f)

@@ -14,6 +14,7 @@ namespace ProjectAssets.Scripts
 
         private float _horizontalInput = 0;
         private bool _isGrounded;
+        private bool _jump;
 
         private void Awake()
         {
@@ -26,18 +27,21 @@ namespace ProjectAssets.Scripts
         {
             // get horizontal direction 1 - move right; -1 - move left
             _horizontalInput = Input.GetAxis("Horizontal");
-            _rigidbody.linearVelocityX = _horizontalInput *_speed;
-            
             if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
             {
-                _isGrounded = false;
-                _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+                _jump = true;
             }
         }
 
         private void FixedUpdate()
         {
             _rigidbody.linearVelocity = new Vector2(_horizontalInput * _speed, _rigidbody.linearVelocity.y);
+            if (_jump)
+            {
+                _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+                _jump = false;
+                _isGrounded = false;
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
