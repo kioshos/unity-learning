@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player
+public sealed class PlayerAgent
 {
     private float _health;
     public event Action<float> OnHealthChanged;
