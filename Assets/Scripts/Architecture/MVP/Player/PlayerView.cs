@@ -1,14 +1,11 @@
 using System;
+using ProjectAssets.Scripts.Architecture.Interfaces;
 using UnityEngine;
 
 namespace ProjectAssets.Scripts.Architecture.MVP.Player
 {
-    public class PlayerView : MonoBehaviour
+    public class PlayerView : MonoBehaviour, IPlayerView
     {
-        public event Action<float> OnInputChanged;
-        public event Action OnJumped;
-        public event Action OnLanded;
-        public event Action OnObstacleHit;
         
         [SerializeField] private Rigidbody2D _rigidbody2D;
         private float _horizontalInput = 0;
@@ -23,6 +20,11 @@ namespace ProjectAssets.Scripts.Architecture.MVP.Player
                 OnJumped?.Invoke(); 
             }
         }
+
+        public event Action<float> OnInputChanged;
+        public event Action OnJumped;
+        public event Action OnLanded;
+        public event Action OnObstacleHit;
 
         public void Move(float horizontalInput, float speed)
         {

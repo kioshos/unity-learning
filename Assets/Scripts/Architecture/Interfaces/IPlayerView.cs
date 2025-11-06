@@ -1,7 +1,14 @@
+using System;
+
 namespace ProjectAssets.Scripts.Architecture.Interfaces
 {
     public interface IPlayerView
     {
-        //TODO: Zenject
+        public event Action<float> OnInputChanged;
+        public event Action OnJumped;
+        public event Action OnLanded;
+        public event Action OnObstacleHit;
+        public void Move(float horizontal, float speed);
+        public void Jump(float jumpForce);
     }
 }

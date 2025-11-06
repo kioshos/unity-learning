@@ -35,4 +35,9 @@ public sealed class PlayerAgent
             OnHealthChanged?.Invoke(_health);
         }
     }
+
+    public PlayerAgent(float maxHealth)
+    {
+        _health = maxHealth;
+    }
 }
